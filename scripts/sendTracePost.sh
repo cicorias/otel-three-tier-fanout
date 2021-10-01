@@ -15,7 +15,7 @@ TRACE_FLAG="01"   # sampled
 TRACE_PARENT="$VERSION-$TRACE_ID-$PARENT_ID-$TRACE_FLAG"
 TRACE_STATE="mystate"
 
-MESSAGE="$(cat /dev/urandom | tr -dc 'a-zA-Z' | fold -w 20 | head -n 1)"
+MESSAGE="Lorem ipsum $(cat /dev/urandom | tr -dc 'a-zA-Z' | fold -w 20 | head -n 1)"
 
 URL="http://localhost:8080/messages"
 
@@ -26,4 +26,4 @@ echo "sending a trace-parent of: $TRACE_PARENT"
 curl --location --request POST "${URL}" \
 --header "traceparent: $TRACE_PARENT" \
 --header "Content-Type: application/json" \
---data-raw "{\"data\":\"$MESSAGE\",\"traceparent\":\"$TRACE_PARENT\" }"
+--data-raw "{\"message\":\"$MESSAGE\",\"traceparent\":\"$TRACE_PARENT\" }"
