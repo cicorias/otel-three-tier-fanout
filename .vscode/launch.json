@@ -1,0 +1,18 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-EhconsumerApplication<ehconsumer>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "wt.consumer.ehconsumer.EhconsumerApplication",
+            "projectName": "ehconsumer",
+            "envFile": "${workspaceFolder}/.env",
+            "env": {
+                "APPLICATIONINSIGHTS_CONNECTION_STRING" : "InstrumentationKey=fcc28b5b-0be7-4836-b7a5-4098709bd17d" },
+            "args": "",
+            "vmArgs": "-javaagent:${workspaceFolder}/applicationinsights-agent-3.1.1.jar"
+        }
+    ]
+}

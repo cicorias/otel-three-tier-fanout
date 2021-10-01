@@ -1,0 +1,28 @@
+spring:
+   cloud:
+     azure:
+       eventhub:
+         connection-string: ${EH_CONNECTION_STRING}
+         checkpoint-storage-account: ${STORAGE_ACCOUNT}
+         checkpoint-access-key: ${STORAGE_KEY}
+         checkpoint-container: ehtest
+
+     stream:
+       bindings:
+         consume-in-0:
+           destination: normal
+           group: $Default
+          #  partitioned: true
+         supply-out-0:
+           destination: normal
+
+       eventhub:
+         bindings:
+           consume-in-0:
+             consumer:
+               checkpoint-mode: MANUAL
+       function:
+         definition: consume;supply;
+       poller:
+         initial-delay: 0
+         fixed-delay: 10000

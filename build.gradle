@@ -1,0 +1,57 @@
+plugins {
+	id 'org.springframework.boot' version '2.5.4'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'wt.consumer'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+	set('azureVersion', "3.8.0")
+	// set('azureVersion', "3.6.1")
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'com.azure.spring:azure-spring-boot-starter'
+	// https://mvnrepository.com/artifact/io.opentelemetry/opentelemetry-api
+	implementation 'io.opentelemetry:opentelemetry-api:1.5.0'
+	// implementation 'io.opentelemetry:opentelemetry-api:1.6.0'
+
+	implementation 'com.microsoft.azure:applicationinsights-web:2.6.3'
+
+	// https://mvnrepository.com/artifact/com.microsoft.azure/applicationinsights-core
+	//mplementation 'com.microsoft.azure:applicationinsights-core:2.6.3'
+
+
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	// https://mvnrepository.com/artifact/com.azure.spring/azure-spring-cloud-starter-eventhubs
+	// implementation 'com.azure.spring:azure-spring-cloud-starter-eventhubs:2.9.0'
+
+	// https://mvnrepository.com/artifact/com.azure.spring/azure-spring-cloud-stream-binder-eventhubs
+	// implementation 'com.azure.spring:azure-spring-cloud-stream-binder-eventhubs:2.9.0 or 2.8.0'  // breaks getting correlationid from span
+
+	implementation 'com.azure.spring:azure-spring-cloud-stream-binder-eventhubs:2.7.0'
+
+	// https://mvnrepository.com/artifact/com.azure/azure-core-tracing-opentelemetry
+	// implementation 'com.azure:azure-core-tracing-opentelemetry:1.0.0-beta.14'
+
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "com.azure.spring:azure-spring-boot-bom:${azureVersion}"
+	}
+}
+
+test {
+	useJUnitPlatform()
+}
